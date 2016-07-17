@@ -31,7 +31,7 @@ describe('httpClient.service.spec.js', () => {
 
 		//when
 		httpClient
-			.httpGet('/get', {param1: 'value1', param2: 'value2'})
+			.httpGet('/get', {params: {param1: 'value1', param2: 'value2'}})
 
 			//then
 			.then(resp => {

@@ -2,12 +2,12 @@
 
 function HttpClient($http, API_URL) {
 	return {
-		httpGet: httpGet
+		httpGet: httpGetWithOptions
 	};
 
-	function httpGet(url, options) {
+	function httpGetWithOptions(url, options) {
 		return $http
-			.get(API_URL + url, {params: options || {}})
+			.get(API_URL + url, options)
 			.then(res => res.data);
 	}
 }

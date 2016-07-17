@@ -5,9 +5,9 @@ function HttpClient($http, API_URL) {
 		httpGet: httpGet
 	};
 
-	function httpGet(url) {
+	function httpGet(url, options) {
 		return $http
-			.get(API_URL + url)
+			.get(API_URL + url, {params: options || {}})
 			.then(res => res.data);
 	}
 }

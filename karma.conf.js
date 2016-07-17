@@ -7,6 +7,7 @@ module.exports = function (config) {
 
 		browserify: {
 			debug: true,
+			watch: true,
 			transform: [
 				['babelify']
 			]

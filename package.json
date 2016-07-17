@@ -1,17 +1,45 @@
 {
-  "name": "togl",
+  "name": "toggl-reporter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Allows to generate reports from https://toggl.com",
   "main": "index.js",
   "dependencies": {
+    "angular": "^1.5.7",
+    "bootstrap-sass": "^3.3.6",
+    "jquery": "^1.12.4",
+    "lodash": "^4.13.1",
     "finalhandler": "^0.5.0",
     "http-proxy": "^1.14.0",
     "serve-static": "^1.11.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "angular-mocks": "^1.5.7",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "concurrently": "^2.2.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.1.1",
+    "karma-browserify": "^5.1.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "node-sass": "^3.8.0",
+    "nodemon": "^1.9.2"
   },
-  "author": "",
+  "scripts": {
+    "test": "karma start karma.conf.js",
+    "clean": "find static ! -name '.gitignore' -type f -exec rm -f {} +",
+    "build-vendor": "node build.vendor.js",
+    "build-app": "node build.app.js",
+    "build-js": "npm run build-vendor && npm run build-app",
+    "build-css": "node-sass --include-path scss scss/main.scss   static/main.css",
+    "build": "npm run build-js && npm run build-css",
+    "watch-js": "nodemon -w src -x \"npm run build-app\"",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "watch-test": "nodemon -w src -x \"npm run test\"",
+    "dev": "concurrently \"node index.js\" \"npm run watch-js\" \"npm run watch-css\"",
+    "dist": "npm run clean && npm test && npm run build-js && npm run build-css"
+  },
+  "author": "Pawel Chudzik",
   "license": "ISC"
 }

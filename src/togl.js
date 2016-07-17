@@ -83,7 +83,6 @@ function groupActivitiesByDay(entries) {
 }
 
 function calcuateProjectsDuration(entries) {
-  var projectsDuration = {};
   return _.chain(entries)
     .reduce(function(result, entry) {
       var projectName = entry.project.name;
@@ -118,7 +117,7 @@ function togglRequestOptions(path) {
     headers: {Authorization: 'Basic ' + btoa(togglApiKey + ':api_token')},
     dataType: 'json'
   };
-};
+}
 
 function getDate(inputId, tillDayEnd) {
   var selectedDate = moment($(inputId).val(), 'DD-MM-YYYY');

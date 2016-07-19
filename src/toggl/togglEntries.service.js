@@ -12,8 +12,10 @@ function TogglEntriesService($q, httpClient, togglProjectsService, togglAuthServ
 			{},
 			togglAuthService.authHttpOptions(),
 			{
-				start_date: formatDate(startDate),
-				end_date: formatDate(endDate)
+				params: {
+					start_date: formatDate(startDate),
+					end_date: formatDate(endDate)
+				}
 			});
 
 		return $q.all({

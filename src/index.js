@@ -1,6 +1,8 @@
 import angular from 'angular';
 
+import 'angular-cookies';
 import 'angular-ui-router';
+import 'angular-ui-bootstrap';
 
 import './const';
 import './commons';

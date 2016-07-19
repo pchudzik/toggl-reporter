@@ -11,7 +11,7 @@ describe('togglEntries.service.spec.js', () => {
 		API_VERSION: '/v8',
 		DATE_FORMAT: 'YYYY-MM-DD'
 	};
-	const togglAuth = {toggl: 'auth'};
+	const togglAuth = {headers: {toggl: 'auth'}};
 	const togglAuthService = {authHttpOptions: _.constant(togglAuth)};
 
 	let $q;
@@ -48,14 +48,13 @@ describe('togglEntries.service.spec.js', () => {
 		const url = httpClientMock.httpGet.calls.mostRecent().args[0];
 		const options = httpClientMock.httpGet.calls.mostRecent().args[1];
 		expect(url).toEqual(TOGGL_API.API_VERSION + '/time_entries');
-		expect(options).toEqual(_.assign(
-			{},
-			togglAuth,
-			{
+		expect(options).toEqual({
+			headers: togglAuth.headers,
+			params: {
 				start_date: '2016-07-17',
 				end_date: '2016-07-19'
 			}
-		));
+		});
 	});
 
 	it('should assign project to each entry', (done) => {
@@ -71,7 +70,7 @@ describe('togglEntries.service.spec.js', () => {
 		//when
 		entriesService.getTimeLineEntries(anyDate, anyDate.add(1, 'd'))
 
-			//then
+		//then
 			.then(entries => {
 				expect(entries.length).toEqual(2);
 				expect(entries[0]).toEqual({

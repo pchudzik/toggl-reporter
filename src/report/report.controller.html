@@ -1,1 +1,69 @@
-Hello from report controller
+<div class="container">
+
+	<div ng-show="reportGenerationInProgress" class="text-center">
+		<img src="assets/loader.gif">
+	</div>
+	<div ng-hide="reportGenerationInProgress">
+		<form class="form-horizontal" role="form" id="form">
+			<div class="form-group">
+				<label for="apiKey" class="col-md-2 control-label">Api Key</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" id="apiKey" placeholder="toggl api key" ng-model="formData.apiKey">
+				</div>
+			</div>
+			<div class="form-group">
+				<span class="col-md-2 control-label">Date range</span>
+				<div class="col-md-6">
+					<div class="form-group row">
+						<label for="startDate" class="col-md-2 control-label">Start date</label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control input-sm" id="startDate"
+									   uib-datepicker-popup="dd-MM-yyyy" is-open="popup.startDate"
+									   ng-model="formData.startDate">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="toggleStartDatePopup()">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						<label for="endDate" class="col-md-2 control-label">End date</label>
+						<div class="col-md-4">
+							<dib class="input-group">
+								<input type="text" class="form-control" id="endDate"
+									   uib-datepicker-popup="dd-MM-yyyy" is-open="popup.endDate"
+									   ng-model="formData.endDate">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="toggleEndDatePopup()">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</div>
+							</dib>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-9 center-block">
+				<button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="generateReport()">Get report
+				</button>
+			</div>
+		</form>
+
+		<div class="clearfix"></div>
+		<div class="container" ng-show="report">
+			<div ng-show="report.length === 0">
+				No entries from selected date range
+			</div>
+			<div ng-show="report.length > 0">
+				<h3>
+					Project daily report
+					from {{formData.startDate | date: 'dd-MM-yyyy' }}
+					to {{formData.endDate | date: 'dd-MM-yyyy'}}
+				</h3>
+				<by-project-daily-report reports="report"></by-project-daily-report>
+			</div>
+
+		</div>
+	</div>
+</div>

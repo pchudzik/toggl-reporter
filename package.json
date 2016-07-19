@@ -5,6 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-cookies": "^1.5.7",
+    "angular-ui-bootstrap": "^1.3.3",
     "angular-ui-router": "^0.3.1",
     "bootstrap-sass": "^3.3.6",
     "finalhandler": "^0.5.0",
@@ -40,14 +42,16 @@
     "lint-js": "jshint src/**js",
     "build-js": "npm run-script build-vendor && npm run-script build-app",
     "build-css": "node-sass --include-path scss scss/main.scss -o static/",
+    "build-fonts": "mkdir -p static/fonts; cp node_modules/bootstrap-sass/assets/fonts/bootstrap/* static/fonts",
     "build-html": "node scripts/build.html.js > src/template.js",
-    "build": "npm run-script build-html && npm run-script build-js && npm run-script build-css",
+    "build": "npm run-script build-html && npm run-script build-js && npm run-script build-fonts && npm run-script build-css",
     "watch-js": "nodemon -w src -e js -x \"npm run-script build-app\"",
     "watch-css": "nodemon -e scss -x \"npm run-script build-css\"",
     "watch-html": "nodemon -w src -e html -x \"npm run-script build-html\"",
     "watch": "concurrently \"npm run-script watch-js\" \"npm run-script watch-css\" \"npm run-script watch-html\"",
-    "dev": "npm run-script clean && npm run-script build-vendor && concurrently \"node index.js\" \"npm run-script watch\"",
-    "dist": "npm run-script clean && npm test && npm run-script build"
+    "dev": "npm run-script clean && npm run-script build-fonts && npm run-script build-vendor && concurrently \"node index.js\" \"npm run-script watch\"",
+    "dist": "npm run-script clean && npm test && npm run-script build",
+    "start": "npm run-script clean && npm run-script build && node index.js"
   },
   "author": "Pawel Chudzik",
   "license": "ISC"

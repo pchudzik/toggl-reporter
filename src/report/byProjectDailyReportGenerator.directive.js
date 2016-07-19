@@ -1,10 +1,13 @@
-function ByProjectDailyReport() {
+function ByProjectDailyReport(moment) {
 	return {
 		restrict: 'E',
 		replace: true,
-		template: 'report/byProjectDailyReportGenerator.directive.html',
+		templateUrl: 'report/byProjectDailyReportGenerator.directive.html',
 		scope: {
-			report: '='
+			reports: '='
+		},
+		link: $scope => {
+			$scope.formatDate = date => moment(date).format('DD-MM-YYYY');
 		}
 	};
 }

@@ -9,11 +9,11 @@ describe('togglAuth.service.spec.js', () => {
 	const now = moment('2016-07-17');
 	const nowInTwoMonths = moment('2016-09-17');
 
-	let cookieMock;
+	let cookiesMock;
 	let momentMock;
 
 	beforeEach(() => {
-		cookieMock = {
+		cookiesMock = {
 			get: jasmine.createSpy('$cookie.get'),
 			put:jasmine.createSpy('$cookie.put')
 		};
@@ -25,12 +25,12 @@ describe('togglAuth.service.spec.js', () => {
 		createService();
 
 		//then
-		expect(cookieMock.get).toHaveBeenCalledWith(TOGGL_COOKIE.COOKIE);
+		expect(cookiesMock.get).toHaveBeenCalledWith(TOGGL_COOKIE.COOKIE);
 	});
 
 	it('should load api key from cookie when available', () => {
 		//given
-		cookieMock.get.and.returnValue(cookieToken);
+		cookiesMock.get.and.returnValue(cookieToken);
 
 		//when
 		const authService = createService();
@@ -48,7 +48,7 @@ describe('togglAuth.service.spec.js', () => {
 		authService.initialize(apiToken);
 
 		//then
-		expect(cookieMock.put).toHaveBeenCalledWith(TOGGL_COOKIE.COOKIE, apiToken, {
+		expect(cookiesMock.put).toHaveBeenCalledWith(TOGGL_COOKIE.COOKIE, apiToken, {
 			expires: nowInTwoMonths.toDate()
 		});
 	});
@@ -74,7 +74,7 @@ describe('togglAuth.service.spec.js', () => {
 	});
 
 	function createService() {
-		return new TogglAuthService(cookieMock, momentMock, TOGGL_COOKIE);
+		return new TogglAuthService(cookiesMock, momentMock, TOGGL_COOKIE);
 	}
 
 	function authorizationHeader(tokenKey) {

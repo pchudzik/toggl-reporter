@@ -1,11 +1,12 @@
 'use strict';
 
-function TogglAuthService($cookie, moment, TOGGL_COOKIE) {
+function TogglAuthService($cookies, moment, TOGGL_COOKIE) {
 	let apiKey = null;
 
 	initialize();
 
 	return {
+		getApiKey: () => apiKey,
 		initialize: initialize,
 		authHttpOptions: createAuthHttpOptions
 	};
@@ -23,11 +24,11 @@ function TogglAuthService($cookie, moment, TOGGL_COOKIE) {
 	function initialize(maybeApiKey) {
 		if (maybeApiKey) {
 			apiKey = maybeApiKey;
-			$cookie.put(TOGGL_COOKIE.COOKIE, apiKey, {
+			$cookies.put(TOGGL_COOKIE.COOKIE, apiKey, {
 				expires: apiKeyCookieExpiration()
 			});
 		} else {
-			apiKey = $cookie.get(TOGGL_COOKIE.COOKIE)
+			apiKey = $cookies.get(TOGGL_COOKIE.COOKIE)
 		}
 	}
 

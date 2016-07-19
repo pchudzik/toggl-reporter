@@ -13,12 +13,12 @@ function TogglAuthService($cookies, moment, TOGGL_COOKIE) {
 
 	function createAuthHttpOptions() {
 		if(!apiKey) {
-			throw "toggl api key not initialized";
+			throw 'toggl api key not initialized';
 		}
 
 		return {
 			headers: {Authorization: 'Basic ' + btoa(apiKey + ':api_token')}
-		}
+		};
 	}
 
 	function initialize(maybeApiKey) {
@@ -28,7 +28,7 @@ function TogglAuthService($cookies, moment, TOGGL_COOKIE) {
 				expires: apiKeyCookieExpiration()
 			});
 		} else {
-			apiKey = $cookies.get(TOGGL_COOKIE.COOKIE)
+			apiKey = $cookies.get(TOGGL_COOKIE.COOKIE);
 		}
 	}
 

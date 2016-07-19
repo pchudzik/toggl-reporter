@@ -1,3 +1,5 @@
+'use strict';
+
 function ByProjectDailyReport() {
 	return {
 		restrict: 'E',

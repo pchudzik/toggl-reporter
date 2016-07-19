@@ -1,3 +1,5 @@
+'use strict';
+
 function ReportController($scope, togglEntriesService, byProjectDailyReportGenerator, moment) {
 	$scope.reportGenerationInProgress = false;
 	$scope.report = null;

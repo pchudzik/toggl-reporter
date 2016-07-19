@@ -1,10 +1,10 @@
 'use strict';
 
-import _ from "lodash";
-import * as angular from "angular";
+import _ from 'lodash';
+import * as angular from 'angular';
 import moment from 'moment';
 
-import TogglEntriesService from "./togglEntries.service";
+import TogglEntriesService from './togglEntries.service';
 
 describe('togglEntries.service.spec.js', () => {
 	const TOGGL_API = {

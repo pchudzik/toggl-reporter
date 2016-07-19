@@ -3,7 +3,7 @@
 import * as angular from 'angular';
 
 import ByProjectDailyReportGenerator from './byProjectDailyReportGenerator.service';
-import ByProjectDailyReport from './byProjectDailyReportGenerator.directive'
+import ByProjectDailyReport from './byProjectDailyReportGenerator.directive';
 import ReportController from './report.controller';
 
 const reportModule = angular

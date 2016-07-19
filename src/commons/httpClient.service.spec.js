@@ -1,6 +1,6 @@
 'use strict';
 
-import * as angular from "angular";
+import * as angular from 'angular';
 
 describe('httpClient.service.spec.js', () => {
 	let API_URL;
@@ -13,7 +13,7 @@ describe('httpClient.service.spec.js', () => {
 			API_URL = _API_URL_;
 			$httpBackend = _$httpBackend_;
 			httpClient = _httpClient_;
-		})
+		});
 	});
 
 	afterEach(() => {

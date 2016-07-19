@@ -1,3 +1,5 @@
+'use strict';
+
 function openApiKeyPrompt(togglAuthService, $uibModal) {
 	if (!togglAuthService.getApiKey()) {
 		$uibModal.open({

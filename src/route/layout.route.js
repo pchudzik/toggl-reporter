@@ -1,3 +1,5 @@
+'use strict';
+
 function layoutRoute($stateProvider) {
 	$stateProvider
 		.state('root', {

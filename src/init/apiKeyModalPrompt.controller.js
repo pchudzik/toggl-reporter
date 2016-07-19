@@ -1,3 +1,5 @@
+'use strict';
+
 function ApiKeyModalPromptController($scope, $uibModalInstance) {
 	$scope.formData = {
 		apiKey: null

@@ -1,4 +1,6 @@
-import angular from 'angular';
+'use strict';
+
+import * as angular from 'angular';
 
 import 'angular-cookies';
 import 'angular-ui-router';

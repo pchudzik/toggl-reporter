@@ -1,3 +1,5 @@
+'use strict';
+
 import * as angular from 'angular';
 
 import configRoute from './config.route';

@@ -39,7 +39,7 @@
     "clean": "rm -rf static; rm src/template.js; mkdir static",
     "build-vendor": "node scripts/build.vendor.js",
     "build-app": "node scripts/build.app.js",
-    "lint-js": "jshint src/**js",
+    "lint-js": "jshint src",
     "build-js": "npm run-script build-vendor && npm run-script build-app",
     "build-css": "node-sass --include-path scss scss/main.scss -o static/",
     "build-fonts": "mkdir -p static/fonts; cp node_modules/bootstrap-sass/assets/fonts/bootstrap/* static/fonts",

@@ -1,7 +1,8 @@
 'use strict';
 
-import _ from "lodash";
-import TogglProjectsService from "./togglProjects.service";
+import * as angular from 'angular';
+import * as _ from 'lodash';
+import TogglProjectsService from './togglProjects.service';
 
 describe('togglProjects.service.spec.js', () => {
 	const togglAuth = {toggl: 'auth'};

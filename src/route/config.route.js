@@ -1,3 +1,5 @@
+'use strict';
+
 function configRoute($urlRouterProvider, $locationProvider) {
 	$urlRouterProvider.otherwise('/rpt/reports');
 	$locationProvider.html5Mode({

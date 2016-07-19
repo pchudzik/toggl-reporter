@@ -1,7 +1,9 @@
+'use strict';
+
 import * as angular from 'angular';
 
 import Moment from './moment.service';
-import Lodash from './lodash.service'
+import Lodash from './lodash.service';
 import HttpClient from './httpClient.service';
 
 const commonsModule = angular

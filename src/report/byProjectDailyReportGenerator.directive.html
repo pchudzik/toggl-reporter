@@ -8,7 +8,7 @@
 		</div>
 		<div class='col-md-9'>
 			<div ng-repeat="entry in report.entries">
-				{{formatDate(entry.date)}} - {{entry.duration}}<br/>
+				{{ entry.date | date: 'dd-MM-yyyy'}} - {{entry.duration/3600}}h<br/>
 				<span ng-repeat="activity in entry.activities">
 					&nbsp;&nbsp;&nbsp;&nbsp; {{activity.description}} - {{activity.duration/3600}}h<br/>
 				</span>

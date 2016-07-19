@@ -1,0 +1,26 @@
+<form class="form-horizontal">
+	<div class="modal-header">
+		<h3 class="modal-title">Toggl api token</h3>
+	</div>
+	<div class="modal-body">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="togglApiKey">Toggl api token</label>
+				<div class="col-md-6">
+					<input id="togglApiKey" name="togglApiKey" type="text" placeholder="toggl api key" class="form-control input-md"
+						   ng-model="formData.apiKey"
+						   ng-required="true">
+				</div>
+			</div>
+
+		</fieldset>
+
+		<div class="well well-sm">
+			Open you <a target="_blank" href="https://toggl.com/app/profile">toggl profile</a> and copy API token placed
+			on bottom of profile page.
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="submit" ng-click="saveApiKey()">Save</button>
+	</div>
+</form>

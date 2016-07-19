@@ -6,19 +6,13 @@
 	<div ng-hide="reportGenerationInProgress">
 		<form class="form-horizontal" role="form" id="form">
 			<div class="form-group">
-				<label for="apiKey" class="col-md-2 control-label">Api Key</label>
-				<div class="col-md-6">
-					<input type="text" class="form-control" id="apiKey" placeholder="toggl api key" ng-model="formData.apiKey">
-				</div>
-			</div>
-			<div class="form-group">
 				<span class="col-md-2 control-label">Date range</span>
 				<div class="col-md-6">
 					<div class="form-group row">
 						<label for="startDate" class="col-md-2 control-label">Start date</label>
 						<div class="col-md-4">
 							<div class="input-group">
-								<input type="text" class="form-control input-sm" id="startDate"
+								<input type="text" class="form-control input" id="startDate"
 									   uib-datepicker-popup="dd-MM-yyyy" is-open="popup.startDate"
 									   ng-model="formData.startDate">
 								<div class="input-group-btn">

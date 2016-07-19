@@ -1,5 +1,9 @@
 {
+	"node": true,
+	"browserify": true,
+	"jasmine": true,
 	"esversion": 6,
+	"esnext": true,
 	"quotmark": "single",
 	"varstmt": "true"
 }

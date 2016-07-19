@@ -1,4 +1,4 @@
-function ReportController($scope, togglAuthService, togglEntriesService, byProjectDailyReportGenerator, moment) {
+function ReportController($scope, togglEntriesService, byProjectDailyReportGenerator, moment) {
 	$scope.reportGenerationInProgress = false;
 	$scope.report = null;
 	$scope.popup = {
@@ -6,7 +6,6 @@ function ReportController($scope, togglAuthService, togglEntriesService, byProje
 		endDate: false
 	};
 	$scope.formData = {
-		apiKey: togglAuthService.getApiKey(),
 		startDate: weekStart(),
 		endDate: weekEnd()
 	};
@@ -23,14 +22,13 @@ function ReportController($scope, togglAuthService, togglEntriesService, byProje
 	function weekEnd() {
 		return moment()
 			.endOf('week')
+			.add(1, 'd')
 			.toDate();
 	}
 
 	function generateReport() {
 		$scope.reportGenerationInProgress = true;
-		console.log('generate report from ', $scope.formData.startDate, 'to', $scope.formData.endDate, 'using', $scope.formData.apiKey);
 
-		togglAuthService.initialize($scope.formData.apiKey);
 		togglEntriesService
 			.getTimeLineEntries($scope.formData.startDate, $scope.formData.endDate)
 			.then(byProjectDailyReportGenerator.generateReport)

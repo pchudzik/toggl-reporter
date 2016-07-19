@@ -9,6 +9,7 @@ import './commons';
 import './report';
 import './toggl';
 import './route';
+import './init';
 import './template';
 
 angular
@@ -18,7 +19,8 @@ angular
 		'reporter.commons',
 		'reporter.toggl',
 		'reporter.report',
-		'reporter.route'
+		'reporter.route',
+		'reporter.init'
 	]);
 
 angular.bootstrap(document, ['reporter']);

@@ -3,7 +3,10 @@
 Application allows to generate reports from http://toggl.com
 
 ## how to run
-npm run dist && npm run
+npm run-script dist && npm run
+
+## how to develop
+npm run-script dev
 
 ## Tips
 Running tests from intellij.

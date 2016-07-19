@@ -1,0 +1,17 @@
+<div class="container" ng-repeat="report in reports">
+	<div class='col-md-2'>
+		<b>{{report.project.name}}</b>
+	</div>
+	<div class='col-md-1'>
+		<b>{{report.project.projectDuration/3600}}h</b>
+	</div>
+	<div class='col-md-9'>
+		<div ng-repeat="entry in report.entries">
+			{{entry.date}} - {{entry.duration}}<br/>
+			<span ng-repeat="activity in entry.activities">
+				&nbsp;&nbsp;&nbsp;&nbsp; {{activity.description}} - {{activity.duration/3600}}h
+			</span>
+		</div>
+	</div>
+	<hr>
+</div>

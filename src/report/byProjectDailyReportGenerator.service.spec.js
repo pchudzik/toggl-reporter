@@ -38,12 +38,12 @@ describe('byProjectDailyReportGenerator.service.spec.js', () => {
 				entries: [
 					{
 						date: moment('2016-07-17T00:00:00').format(),
-						entries: [entry1Sunday, entry2Sunday],
+						activities: [entry1Sunday, entry2Sunday],
 						duration: entry1Sunday.duration + entry2Sunday.duration
 					},
 					{
 						date: moment('2016-07-18T00:00:00').format(),
-						entries: [entry1Monday, entry2Monday],
+						activities: [entry1Monday, entry2Monday],
 						duration: entry1Monday.duration + entry2Monday.duration
 					}
 				]
@@ -68,7 +68,7 @@ describe('byProjectDailyReportGenerator.service.spec.js', () => {
 					entries: [
 						{
 							date: moment(anyDateRounded).format(),
-							entries: [entry1, entry2],
+							activities: [entry1, entry2],
 							duration: entry1.duration + entry2.duration
 						}
 					]
@@ -79,7 +79,7 @@ describe('byProjectDailyReportGenerator.service.spec.js', () => {
 					entries: [
 						{
 							date: moment(anyDateRounded).format(),
-							entries: [entry3],
+							activities: [entry3],
 							duration: entry3.duration
 						}
 					]

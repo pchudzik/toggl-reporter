@@ -46,7 +46,7 @@ function ByProjectDailyReportGenerator(_, moment) {
 			.map((entries, entryDate) => {
 				return {
 					date: roundToFullDay(moment(entryDate, entryDateFormat)).format(),
-					entries: entries,
+					activities: entries,
 					duration: calculateDuration(entries)
 				};
 			})

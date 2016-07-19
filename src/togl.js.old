@@ -15,7 +15,7 @@ function generateReport() {
       var workspaceIds = _.map(workspaces, 'id');
       var projectRequests = $.when.apply($, _.map(workspaceIds, findProject));
       var entriesRequest = findEntriesFromRange();
-      return $.when(projectRequests, entriesRequest)
+      return $.when(projectRequests, entriesRequest);
     })
     .then(function(projects, entries) {
       var projectsById = _.keyBy(_.flatten(projects[0]), 'id');
@@ -106,7 +106,7 @@ function findProject(workspaceId) {
 
 function findEntriesFromRange() {
   function encodeDate(date) {
-    return encodeURIComponent(date.format("YYYY-MM-DDTHH:mm:ssZ"))
+    return encodeURIComponent(date.format("YYYY-MM-DDTHH:mm:ssZ"));
   }
   return $.ajax(togglRequestOptions('/time_entries?start_date=' + encodeDate(getDate('#startDate')) + "&end_date=" + encodeDate(getDate('#endDate'))));
 }

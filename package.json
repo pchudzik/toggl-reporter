@@ -20,6 +20,7 @@
     "browserify": "^13.0.1",
     "concurrently": "^2.2.0",
     "jasmine-core": "^2.4.1",
+    "jshint": "^2.9.2",
     "karma": "^1.1.1",
     "karma-browserify": "^5.1.0",
     "karma-jasmine": "^1.0.2",
@@ -28,17 +29,19 @@
     "nodemon": "^1.9.2"
   },
   "scripts": {
+    "pretest": "npm run lint-js",
     "test": "karma start karma.conf.js",
     "clean": "find static ! -name '.gitignore' -type f -exec rm -f {} +",
     "build-vendor": "node build.vendor.js",
     "build-app": "node build.app.js",
+    "lint-js": "jshint src/**js",
     "build-js": "npm run build-vendor && npm run build-app",
     "build-css": "node-sass --include-path scss scss/main.scss   static/main.css",
     "build": "npm run build-js && npm run build-css",
     "watch-js": "nodemon -w src -x \"npm run build-app\"",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "watch-test": "nodemon -w src -x \"npm run test\"",
-    "dev": "concurrently \"node index.js\" \"npm run watch-js\" \"npm run watch-css\"",
+    "dev": "build-vendor && concurrently \"node index.js\" \"npm run watch-js\" \"npm run watch-css\"",
     "dist": "npm run clean && npm test && npm run build-js && npm run build-css"
   },
   "author": "Pawel Chudzik",

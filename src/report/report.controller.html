@@ -7,7 +7,7 @@
 		<form class="form-horizontal" role="form" id="form">
 			<div class="form-group">
 				<span class="col-md-2 control-label">Date range</span>
-				<div class="col-md-6">
+				<div class="col-md-9">
 					<div class="form-group row">
 						<label for="startDate" class="col-md-2 control-label">Start date</label>
 						<div class="col-md-4">
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-9 center-block">
+			<div class="form-group col-md-12 center-block">
 				<button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="generateReport()">Get report
 				</button>
 			</div>
@@ -46,8 +46,9 @@
 
 		<div class="clearfix"></div>
 		<div class="container" ng-show="report">
+			<hr/>
 			<div ng-show="report.length === 0">
-				No entries from selected date range
+				<h4>No entries from selected date range</h4>
 			</div>
 			<div ng-show="report.length > 0">
 				<h3>

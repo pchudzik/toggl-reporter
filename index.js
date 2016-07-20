@@ -1,3 +1,6 @@
+'use strict';
+
+var _ = require('lodash');
 var http = require('http');
 var httpProxy = require('http-proxy');
 var finalhandler = require('finalhandler');
@@ -7,6 +10,23 @@ var url = require('url');
 var serve = serveStatic("./");
 var proxy = httpProxy.createProxyServer({});
 
+var DEFAULT_FILE = 'index.html';
+var ASSET_EXTENSIONS = [
+	'js',
+	'css',
+	'png',
+	'jpg',
+	'jpeg',
+	'gif',
+	'svg',
+	'eot',
+	'otf',
+	'ttc',
+	'ttf',
+	'woff',
+	'woff2'
+];
+
 http.createServer(function (req, res) {
 	if (req.url.startsWith("/api")) {
 		proxy.web(req, res, {
@@ -14,24 +34,8 @@ http.createServer(function (req, res) {
 			target: 'https://www.toggl.com'
 		});
 	} else {
-		var assetExtensions = [
-			'js',
-			'css',
-			'png',
-			'jpe?g',
-			'gif',
-			'svg',
-			'eot',
-			'otf',
-			'ttc',
-			'ttf',
-			'woff2?'
-		];
-		var DEFAULT_FILE = 'index.html';
-		var ASSET_EXTENSION_REGEX = new RegExp('\\b(?!\\?)\\.(' + assetExtensions.join('|') + ')\\b(?!\\.)', 'i');
 		var fileHref = url.parse(req.url).href;
-
-		if (!ASSET_EXTENSION_REGEX.test(fileHref) || fileHref.startsWith('/rpt')) {
+		if (!isResourceCall(fileHref)) {
 			req.url = '/' + DEFAULT_FILE;
 		}
 
@@ -39,3 +43,10 @@ http.createServer(function (req, res) {
 	}
 })
 	.listen('8080');
+
+function isResourceCall(fileHref) {
+	var lowerCaseFileHref = _.toLower(fileHref);
+	return !!_.find(ASSET_EXTENSIONS, function(extension) {
+		return _.endsWith(lowerCaseFileHref, _.toLower(extension));
+	});
+}

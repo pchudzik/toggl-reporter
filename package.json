@@ -14,7 +14,8 @@
     "jquery": "^1.12.4",
     "lodash": "^4.13.1",
     "moment": "^2.14.1",
-    "serve-static": "^1.11.1"
+    "serve-static": "^1.11.1",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.7",
@@ -30,8 +31,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.1",
     "node-sass": "^3.8.0",
-    "nodemon": "^1.9.2",
-    "url": "^0.11.0"
+    "nodemon": "^1.9.2"
   },
   "scripts": {
     "pretest": "npm run-script lint-js && npm run-script build-html",

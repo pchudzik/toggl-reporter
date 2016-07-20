@@ -27,26 +27,39 @@ var ASSET_EXTENSIONS = [
 	'woff2'
 ];
 
-http.createServer(function (req, res) {
-	if (req.url.startsWith("/api")) {
+var listenPort = getListenPort();
+
+http
+	.createServer(requestHandler)
+	.listen(listenPort);
+
+console.log('Toggl reporter server started at port', listenPort);
+
+function requestHandler(req, res) {
+	var fileHref = url.parse(req.url).href;
+
+	if (_.startsWith(fileHref, '/api')) {
 		proxy.web(req, res, {
 			secure: false,
 			target: 'https://www.toggl.com'
 		});
 	} else {
-		var fileHref = url.parse(req.url).href;
 		if (!isResourceCall(fileHref)) {
 			req.url = '/' + DEFAULT_FILE;
 		}
 
 		serve(req, res, finalhandler(req, res));
 	}
-})
-	.listen('8080');
+}
+
+function getListenPort() {
+	var args = process.argv.slice(2);
+	return _.head(args) || 8080;
+}
 
 function isResourceCall(fileHref) {
 	var lowerCaseFileHref = _.toLower(fileHref);
-	return !!_.find(ASSET_EXTENSIONS, function(extension) {
+	return !!_.find(ASSET_EXTENSIONS, function (extension) {
 		return _.endsWith(lowerCaseFileHref, _.toLower(extension));
 	});
 }

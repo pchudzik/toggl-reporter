@@ -7,12 +7,19 @@
 			<b>{{report.projectDuration/3600}}h</b>
 		</div>
 		<div class='col-md-9'>
-			<div ng-repeat="entry in report.entries">
-				{{ entry.date | date: 'dd-MM-yyyy'}} - {{entry.duration/3600}}h<br/>
-				<span ng-repeat="activity in entry.activities">
+			<div id="{{generateDetailsElementId(report)}}">
+				<div ng-repeat="entry in report.entries">
+					{{ entry.date | date: 'dd-MM-yyyy'}} - {{entry.duration/3600}}h<br/>
+					<span ng-repeat="activity in entry.activities">
 					&nbsp;&nbsp;&nbsp;&nbsp; {{activity.description}} - {{activity.duration/3600}}h<br/>
 				</span>
-				<br/>
+					<br/>
+				</div>
+			</div>
+			<div>
+				<button class="btn" ngclipboard data-clipboard-target="#{{generateDetailsElementId(report)}}">
+					<i class="glyphicon glyphicon-copy"></i> Copy to clipboard
+				</button>
 			</div>
 		</div>
 		<div class="clearfix"></div>

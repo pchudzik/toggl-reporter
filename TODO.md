@@ -1,7 +1,6 @@
 # v1
 ! add support for travis ci
 !! configurable listen port
-!! add copy to clipboard feature in report results
 !! merge duplicated activities in the same day (for example: EMAP-123 - 1h, emap CR - 1h, EMAP-123 - 2h should be merged to EMAP-123 - 3h, emap CR - 1h (maybe additional checkbox with option is good idea?)
 !!! add page loading indicator (progress bar  - http://chieffancypants.github.io/angular-loading-bar/)
 

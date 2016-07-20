@@ -9,6 +9,7 @@ import ReportController from './report.controller';
 const reportModule = angular
 	.module('reporter.report', [
 		'ui.bootstrap',
+		'ngclipboard',
 		'reporter.toggl'
 	])
 

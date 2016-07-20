@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import moment from 'moment';
+import EntriesDurationCalculator from './entriesDurationCalculator.service';
 
 import ByProjectDailyReportGenerator from './byProjectDailyReportGenerator.service';
 
@@ -9,11 +10,14 @@ describe('byProjectDailyReportGenerator.service.spec.js', () => {
 	const anyDuration = 90;
 	const anyDate = '2016-07-16T08:24:12';
 	const anyDateRounded = '2016-07-16T00:00:00';
+	const entriesMerger = {
+		mergeEntriesByDescription: entries => entries
+	};
 
 	let generator;
 
 	beforeEach(() => {
-		generator = new ByProjectDailyReportGenerator(_, moment);
+		generator = new ByProjectDailyReportGenerator(_, moment, new EntriesDurationCalculator(_) ,entriesMerger);
 	});
 
 	describe('report format', () => {

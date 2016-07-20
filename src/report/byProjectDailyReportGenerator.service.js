@@ -1,6 +1,6 @@
 'use strict';
 
-function ByProjectDailyReportGenerator(_, moment) {
+function ByProjectDailyReportGenerator(_, moment, entriesDurationCalculator, entriesMerger) {
 	return {
 		generateReport: generateReport
 	};
@@ -46,19 +46,12 @@ function ByProjectDailyReportGenerator(_, moment) {
 			.map((entries, entryDate) => {
 				return {
 					date: roundToFullDay(moment(entryDate, entryDateFormat)).format(),
-					activities: entries,
-					duration: calculateDuration(entries)
+					activities: entriesMerger.mergeEntriesByDescription(entries),
+					duration: entriesDurationCalculator.calculateTotalDuration(entries)
 				};
 			})
 			.sortBy('date')
 			.value();
-	}
-
-	function calculateDuration(entries) {
-		return _.reduce(
-			entries,
-			(result, entry) => result + entry.duration,
-			0);
 	}
 
 	function roundToFullDay(entryDate) {

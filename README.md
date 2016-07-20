@@ -1,5 +1,7 @@
 # toggl-reporter
 
+[![Build Status](https://travis-ci.org/pchudzik/toggl-reporter.svg?branch=master)](https://travis-ci.org/pchudzik/toggl-reporter)
+
 Application allows to generate reports from http://toggl.com
 
 ## how to run

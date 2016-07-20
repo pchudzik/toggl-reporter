@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/pchudzik/toggl-reporter.svg?branch=master)](https://travis-ci.org/pchudzik/toggl-reporter)
 
-Application allows to generate reports from http://toggl.com
+Application allows to generate activity reports from http://toggl.com
+It is also poc for bower/gulp less application with npm as dependency manager and build tool.
 
 ## how to run
 npm run-script dist && npm run

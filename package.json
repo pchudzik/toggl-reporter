@@ -34,18 +34,19 @@
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.1",
     "node-sass": "^3.8.0",
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "shx": "^0.1.2"
   },
   "scripts": {
     "pretest": "npm run-script lint-js && npm run-script build-html",
     "test": "karma start scripts/karma.conf.js",
-    "clean": "rm -rf static; rm src/template.js; mkdir static",
+    "clean": "shx rm -rf static && shx rm -rf src/template.js && shx mkdir static",
     "build-vendor": "node scripts/build.vendor.js",
     "build-app": "node scripts/build.app.js",
     "lint-js": "jshint src",
     "build-js": "npm run-script build-vendor && npm run-script build-app",
     "build-css": "node-sass --include-path scss scss/main.scss -o static/",
-    "build-fonts": "mkdir -p static/fonts; cp node_modules/bootstrap-sass/assets/fonts/bootstrap/* static/fonts",
+    "build-fonts": "shx mkdir -p static/fonts && shx cp node_modules/bootstrap-sass/assets/fonts/bootstrap/* static/fonts",
     "build-html": "node scripts/build.html.js > src/template.js",
     "build": "npm run-script build-html && npm run-script build-js && npm run-script build-fonts && npm run-script build-css",
     "watch-js": "nodemon -w src -e js -x \"npm run-script build-app\"",

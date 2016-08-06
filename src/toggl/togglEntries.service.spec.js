@@ -21,6 +21,7 @@ describe('togglEntries.service.spec.js', () => {
 
 	let $q;
 	let $rootScope;
+	let momentMock;
 	let httpClientMock;
 	let togglProjectsServiceMock;
 
@@ -37,8 +38,9 @@ describe('togglEntries.service.spec.js', () => {
 		togglProjectsServiceMock = {
 			getProjects: jasmine.createSpy('togglProjectsService.getProjects')
 		};
+		momentMock = jasmine.createSpy('momentMock').and.callFake(moment);
 
-		entriesService = new TogglEntriesService($q, httpClientMock, togglProjectsServiceMock, togglAuthService, _, moment, TOGGL_API, UNKNOWN_PROJECT);
+		entriesService = new TogglEntriesService($q, httpClientMock, togglProjectsServiceMock, togglAuthService, _, momentMock, TOGGL_API, UNKNOWN_PROJECT);
 	});
 
 	it('should format date for time line entries query', () => {
@@ -119,6 +121,38 @@ describe('togglEntries.service.spec.js', () => {
 				expect(entries.length).toEqual(1);
 				expect(entries[0].project).toEqual(UNKNOWN_PROJECT);
 				expect(entries[0].pid).toEqual(UNKNOWN_PROJECT.id);
+				done();
+			});
+
+		$rootScope.$apply();
+	});
+
+	it('should calculate entry duration when it is pending', done => {
+		const now = moment('2016-08-06T08:40:00+00:00');
+		momentMock.and.callFake(maybeDate => maybeDate ? moment(maybeDate) : now);
+		const expectedEntryDuration = 1200;
+		const pendingEntry = {
+			at: '2016-08-06T08:20:00+00:00',
+			billable: false,
+			description: 'in progress',
+			duration: -1470471579,
+			duronly: false,
+			guid: '7260c871-548d-4377-a0b8-a314ebe57a7b',
+			id: 425053802,
+			start: '2016-08-06T08:20:00+00:00',
+			uid: 2388355,
+			wid: 1593583
+		};
+		httpClientMock.httpGet.and.returnValue($q.when([pendingEntry]));
+		togglProjectsServiceMock.getProjects.and.returnValue($q.when([]));
+
+		//when
+		entriesService.getTimeLineEntries(anyDate, anyDate.add(1, ' d'))
+
+		//then
+			.then(entries => {
+				expect(entries.length).toEqual(1);
+				expect(entries[0].duration).toEqual(expectedEntryDuration);
 				done();
 			});
 

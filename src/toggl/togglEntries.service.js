@@ -21,9 +21,11 @@ function TogglEntriesService($q, httpClient, togglProjectsService, togglAuthServ
 		return $q.all({
 			entries: httpClient.httpGet(timeEntriesApiUrl, requestOptions),
 			allProjects: togglProjectsService.getProjects()
-		}).then(result => _.map(
-			result.entries,
-			entry => assignProjectToEntry(result.allProjects, entry)));
+		}).then(result => _.chain(result.entries)
+			.map(_.partial(assignProjectToEntry, result.allProjects))
+			.map(calculateEntryDurationIfPending)
+			.value()
+		);
 	}
 
 	function assignProjectToEntry(allProjects, entry) {
@@ -38,6 +40,14 @@ function TogglEntriesService($q, httpClient, togglProjectsService, togglAuthServ
 	function findEntryProject(allProjects, projectId) {
 		const entryProject = _.find(allProjects, {id: projectId});
 		return entryProject ? entryProject : UNKNOWN_PROJECT;
+	}
+
+	function calculateEntryDurationIfPending(entry) {
+		if (entry.duration < 0) {
+			const now = moment().utc().toDate().getTime();
+			entry.duration = (now - moment(entry.start).utc().toDate().getTime()) / 1000;
+		}
+		return entry;
 	}
 }
 

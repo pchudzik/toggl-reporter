@@ -4,14 +4,14 @@
 			<b>{{report.project.name}}</b>
 		</div>
 		<div class='col-md-1'>
-			<b>{{report.projectDuration/3600}}h</b>
+			<b>{{report.projectDuration/3600 | number:2 }}h</b>
 		</div>
 		<div class='col-md-9'>
 			<div id="{{generateDetailsElementId(report)}}">
 				<div ng-repeat="entry in report.entries">
-					{{ entry.date | date: 'dd-MM-yyyy'}} - {{entry.duration/3600}}h<br/>
+					{{ entry.date | date: 'dd-MM-yyyy'}} - {{entry.duration/3600 | number:2}}h<br/>
 					<span ng-repeat="activity in entry.activities">
-					&nbsp;&nbsp;&nbsp;&nbsp; {{activity.description}} - {{activity.duration/3600}}h<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp; {{activity.description}} - {{activity.duration/3600 | number:2}}h<br/>
 				</span>
 					<br/>
 				</div>

@@ -13,7 +13,7 @@
 						<div class="col-md-4">
 							<div class="input-group">
 								<input type="text" class="form-control input" id="startDate"
-									   uib-datepicker-popup="dd-MM-yyyy" is-open="popup.startDate"
+									   uib-datepicker-popup="dd-MM-yyyy" is-open="popup.startDate" datepicker-options="datePickerOptions"
 									   ng-model="formData.startDate">
 								<div class="input-group-btn">
 									<button type="button" class="btn btn-default" ng-click="toggleStartDatePopup()">
@@ -26,7 +26,7 @@
 						<div class="col-md-4">
 							<dib class="input-group">
 								<input type="text" class="form-control" id="endDate"
-									   uib-datepicker-popup="dd-MM-yyyy" is-open="popup.endDate"
+									   uib-datepicker-popup="dd-MM-yyyy" is-open="popup.endDate" datepicker-options="datePickerOptions"
 									   ng-model="formData.endDate">
 								<div class="input-group-btn">
 									<button type="button" class="btn btn-default" ng-click="toggleEndDatePopup()">

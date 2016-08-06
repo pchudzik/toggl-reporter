@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "description": "Allows to generate reports from https://toggl.com",
   "main": "index.js",
+  "repository":{
+    "type": "git",
+    "url": "git://github.com/pchudzik/toggl-reporter.git"
+  },
+  "author": "Pawel Chudzik",
+  "license": "ISC",
   "dependencies": {
     "angular": "^1.5.7",
     "angular-animate": "^1.5.7",
     "angular-cookies": "^1.5.7",
     "angular-loading-bar": "^0.9.0",
-    "angular-ui-bootstrap": "^1.3.3",
+    "angular-ui-bootstrap": "^2.0.1",
     "angular-ui-router": "^0.3.1",
     "bootstrap-sass": "^3.3.6",
     "finalhandler": "^0.5.0",
@@ -56,7 +62,5 @@
     "dev": "npm run-script clean && npm run-script build-fonts && npm run-script build-vendor && concurrently \"node index.js\" \"npm run-script watch\"",
     "dist": "npm run-script clean && npm test && npm run-script build",
     "start": "npm run-script clean && npm run-script build && node index.js"
-  },
-  "author": "Pawel Chudzik",
-  "license": "ISC"
+  }
 }

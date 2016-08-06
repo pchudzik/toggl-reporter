@@ -11,6 +11,9 @@ function ReportController($scope, togglEntriesService, byProjectDailyReportGener
 		startDate: weekStart(),
 		endDate: weekEnd()
 	};
+	$scope.datePickerOptions = {
+		startingDay: 1
+	};
 	$scope.toggleStartDatePopup = () => $scope.popup.startDate = !$scope.popup.startDate;
 	$scope.toggleEndDatePopup = () => $scope.popup.endDate = !$scope.popup.endDate;
 	$scope.generateReport = generateReport;
@@ -18,6 +21,7 @@ function ReportController($scope, togglEntriesService, byProjectDailyReportGener
 	function weekStart() {
 		return moment()
 			.startOf('week')
+			.add(1, 'd')
 			.toDate();
 	}
 

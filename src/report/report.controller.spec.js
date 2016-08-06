@@ -7,7 +7,7 @@ import ReportController from './report.controller';
 
 describe('report.controller.spec.js', () => {
 	const now = moment('2016-07-19');
-	const weekStart = moment('2016-07-17T00:00:00');
+	const weekStart = moment('2016-07-18T00:00:00');
 	const weekEnd = moment('2016-07-24T23:59:59');
 
 	const timeLineEntries = ['entry1', 'entry2'];

@@ -9,7 +9,7 @@ function ByProjectDailyReportGenerator(_, moment, entriesDurationCalculator, ent
 		const projects = extractProjects(entries);
 		const totalProjectDurations = calculateTotalProjectsDuration(entries);
 
-		return _.reduce(projects, (result, project) => {
+		const result = _.reduce(projects, (result, project) => {
 			const projectEntry = {
 				project: project,
 				projectDuration: totalProjectDurations['' + project.id],
@@ -17,6 +17,7 @@ function ByProjectDailyReportGenerator(_, moment, entriesDurationCalculator, ent
 			};
 			return _.concat(result, projectEntry);
 		}, []);
+		return result;
 	}
 
 	function extractProjects(entries) {

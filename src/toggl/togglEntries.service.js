@@ -1,6 +1,6 @@
 'use strict';
 
-function TogglEntriesService($q, httpClient, togglProjectsService, togglAuthService, _, moment, TOGGL_API) {
+function TogglEntriesService($q, httpClient, togglProjectsService, togglAuthService, _, moment, TOGGL_API, UNKNOWN_PROJECT) {
 	const timeEntriesApiUrl = TOGGL_API.API_VERSION + '/time_entries';
 
 	return {
@@ -27,12 +27,17 @@ function TogglEntriesService($q, httpClient, togglProjectsService, togglAuthServ
 	}
 
 	function assignProjectToEntry(allProjects, entry) {
-		const entryProject = _.find(allProjects, {id: entry.pid});
-		return _.assign(entry, {project: entryProject});
+		const entryProject = findEntryProject(allProjects, entry.pid);
+		return _.assign(entry, {project: entryProject, pid: entryProject.id});
 	}
 
 	function formatDate(date) {
 		return moment(date).format(TOGGL_API.DATE_FORMAT);
+	}
+
+	function findEntryProject(allProjects, projectId) {
+		const entryProject = _.find(allProjects, {id: projectId});
+		return entryProject ? entryProject : UNKNOWN_PROJECT;
 	}
 }
 

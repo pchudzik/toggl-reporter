@@ -50,12 +50,13 @@
 			<div ng-show="report.length === 0">
 				<h4>No entries from selected date range</h4>
 			</div>
-			<div ng-show="report.length > 0">
+			<div ng-show="report.length > 0" class="report-summary">
 				<h3>
-					Project daily report
+					Total by project daily effort of {{totalEffort | number:2}}h
 					from {{formData.startDate | date: 'dd-MM-yyyy' }}
 					to {{formData.endDate | date: 'dd-MM-yyyy'}}
 				</h3>
+				<hr/>
 				<by-project-daily-report reports="report"></by-project-daily-report>
 			</div>
 

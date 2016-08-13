@@ -113,7 +113,6 @@ describe('report.controller.spec.js', () => {
 		expect(moment(timeLineEntriesCall.args[1]).format()).toEqual(weekEnd.format());
 	});
 
-
 	it('should save generated report in scope', () => {
 		//given
 		createController();
@@ -125,6 +124,24 @@ describe('report.controller.spec.js', () => {
 		//then
 		expect(byProjectDailyReportGeneratorMock.generateReport).toHaveBeenCalledWith(timeLineEntries);
 		expect(scope.report).toEqual(generatedReport);
+	});
+
+	it('should calculate total effort from selected time range', () => {
+		//given
+		const reports = [
+			{projectDuration: 1 * 3600},
+			{projectDuration: 2 * 3600},
+			{projectDuration: 3 * 3600},
+		];
+		byProjectDailyReportGeneratorMock.generateReport.and.returnValue($q.when(reports));
+		createController();
+
+		//when
+		scope.generateReport();
+		$rootScope.$apply();
+
+		//then
+		expect(scope.totalEffort).toEqual((reports[0].projectDuration + reports[1].projectDuration + reports[2].projectDuration)/3600);
 	});
 	
 	function createController() {

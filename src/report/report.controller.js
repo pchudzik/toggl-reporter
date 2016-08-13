@@ -1,5 +1,7 @@
 'use strict';
 
+import _ from 'lodash';
+
 function ReportController($scope, togglEntriesService, byProjectDailyReportGenerator, moment) {
 	$scope.reportGenerationInProgress = false;
 	$scope.report = null;
@@ -39,7 +41,15 @@ function ReportController($scope, togglEntriesService, byProjectDailyReportGener
 			.getTimeLineEntries($scope.formData.startDate, $scope.formData.endDate)
 			.then(byProjectDailyReportGenerator.generateReport)
 			.then(report => $scope.report = report)
+			.then(report => $scope.totalEffort = calculateTotalEffort(report))
 			.finally(() => $scope.reportGenerationInProgress = false);
+	}
+
+	function calculateTotalEffort(reports) {
+		return _.chain(reports)
+			.map('projectDuration')
+			.reduce((result, duration) => result + duration, 0)
+			.value() / 3600;
 	}
 }
 
